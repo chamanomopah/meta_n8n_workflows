@@ -1,0 +1,256 @@
+{
+  "name": "adw_template_v1",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "cbfe7bd5-4be3-47f8-a45d-8c1b20d728ad",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "8197e542-a409-4000-8a0b-7bda67bf561e",
+      "name": "Webhook",
+      "webhookId": "cbfe7bd5-4be3-47f8-a45d-8c1b20d728ad"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f9d13704-fcec-4ac0-b1cc-97f6e7a46e4c",
+              "name": "arguments",
+              "value": "tenho um problema no app sobre carregamento",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "65c0c64a-6401-4894-95d6-34fbd84d2803",
+      "name": "arguments"
+    },
+    {
+      "parameters": {
+        "command": "=cd /d {{ $('path & commands').item.json.diretorio }} && echo. | claude -p \"{{ $('path & commands').item.json.slashCommand_agent2 }} \" --dangerously-skip-permissions < NUL"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        640,
+        0
+      ],
+      "id": "7be94c04-1a38-4c22-8e22-85d90bb702b9",
+      "name": "Claude agent 2"
+    },
+    {
+      "parameters": {
+        "command": "=cd /d {{ $('path & commands').item.json.diretorio }} && echo. | claude -p \"{{ $('path & commands').item.json.slashCommand_agent3 }} \" --dangerously-skip-permissions < NUL"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        800,
+        0
+      ],
+      "id": "9bb8094a-4048-4824-b215-837a1437f017",
+      "name": "Claude agent 3"
+    },
+    {
+      "parameters": {
+        "command": "=cd /d {{ $('path & commands').item.json.diretorio }} && echo. | claude -p \"{{ $('path & commands').item.json.slashCommand_agent1 }} {{ $json.arguments }} \" --dangerously-skip-permissions < NUL"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        480,
+        0
+      ],
+      "id": "66240075-8295-4001-ad6a-1a10904e2df6",
+      "name": "Claude agent 1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dir-001",
+              "name": "diretorio",
+              "value": "C:\\Users\\Lofrey\\Downloads\\Projetos\\adw_in_n8n",
+              "type": "string"
+            },
+            {
+              "id": "cmd-001",
+              "name": "slashCommand_agent1",
+              "value": "/plan",
+              "type": "string"
+            },
+            {
+              "id": "6e8a18b9-d379-47da-9745-5b0a5574ad45",
+              "name": "slashCommand_agent2",
+              "value": "/build",
+              "type": "string"
+            },
+            {
+              "id": "127b50de-a5e2-4838-8c41-6e0c15eab277",
+              "name": "slashCommand_agent3",
+              "value": "/test",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0c0d0aaf-44ae-443c-801d-133419d0b480",
+      "name": "path & commands"
+    },
+    {
+      "parameters": {
+        "content": "# Claude Code CLI - AGENTS",
+        "height": 380,
+        "width": 580
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        420,
+        -120
+      ],
+      "id": "2efe04e6-b09f-4763-a913-85d05a3e2a6d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Instruções",
+        "height": 380,
+        "width": 180,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        180,
+        -120
+      ],
+      "id": "285608b2-9ab0-45d3-94e2-0c58e45491fa",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Pasta e comandos",
+        "height": 380,
+        "width": 180,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -120
+      ],
+      "id": "c839809d-9fb8-40bf-935e-ac44fc290060",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {
+    "arguments": [
+      {
+        "json": {
+          "arguments": "tenho um problema no app sobre carregamento"
+        }
+      }
+    ],
+    "path & commands": [
+      {
+        "json": {
+          "diretorio": "C:\\Users\\Lofrey\\Downloads\\Projetos\\adw_in_n8n",
+          "slashCommand_agent1": "/plan",
+          "slashCommand_agent2": "/build",
+          "slashCommand_agent3": "/test"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "path & commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "arguments": {
+      "main": [
+        [
+          {
+            "node": "Claude agent 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude agent 2": {
+      "main": [
+        [
+          {
+            "node": "Claude agent 3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude agent 1": {
+      "main": [
+        [
+          {
+            "node": "Claude agent 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "path & commands": {
+      "main": [
+        [
+          {
+            "node": "arguments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d9c79754-2134-4255-9529-0e31ff3ac078",
+  "meta": {
+    "instanceId": "ecc9cc24636de68ed2d30df0c6515d8bc2a722bad103df8bbfd8df8e3555655e"
+  },
+  "id": "BVEJpyeRuGrNnruQ",
+  "tags": []
+}
