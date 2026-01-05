@@ -15,7 +15,7 @@ Baseado no princípio **"One Agent, One Prompt, One Purpose"** (Tactic #6), voc�
 ## Template de Referência
 Todos os workflows devem seguir a estrutura base do `adw_template_v1.json`:
 - 1 node Webhook (trigger)
-- 1-2 nodes Set (depende se precisa de $arguments)
+- 1-2 nodes Set (depende se precisa de $arguments) (no set precisa ter sempre o caminho (path) pois se não o claude code não funciona e os slash commandos pro claude code pros execute commands nodes)
 - N nodes Execute Command (um para cada custom command/agente especializado)
 
 ## Princípios Fundamentais

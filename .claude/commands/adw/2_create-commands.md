@@ -2,7 +2,6 @@
 description: Cria custom commands baseados no plano da pipeline seguindo padrão de qualidade SDLC
 argument-hint: [plan-file]
 allowed-tools: Read, Write, Bash, Glob, Grep
-model: claude-sonnet-4-5-20250929
 ---
 
 # Criar Custom Commands - Pipeline ADW
@@ -72,8 +71,8 @@ Verifique workflows existentes em `C:\.n8n_workflows\projects\` para determinar 
 
 ### 3. Criar Diretório do Projeto
 ```bash
-mkdir "C:\.n8n_workflows\projects\#[numero]-[nome_do_workflow]"
-mkdir "C:\.n8n_workflows\projects\#[numero]-[nome_do_workflow]\.claude\commands"
+mkdir "C:\.n8n_workflows\projects\[numero]-[nome_do_workflow]"
+mkdir "C:\.n8n_workflows\projects\[numero]-[nome_do_workflow]\.claude\commands"
 ```
 
 ### 4. Criar README.md
@@ -179,7 +178,7 @@ allowed-tools: [tools necessárias]
   - `generate-readme.md`
 
 ### Diretórios
-- **Nome**: `#[numero]-[nome-claro]`
+- **Nome**: `[numero]-[nome-claro]`
 - **Exemplo**: `#001-slack-webhook-integration`
 
 ## Validação Final
@@ -199,8 +198,8 @@ Antes de finalizar, verifique:
 ```
 ## Criados com Sucesso
 
-### Projeto: #[numero]-[nome_do_workflow]
-**Localização:** `C:\.n8n_workflows\projects\#[numero]-[nome_do_workflow]\`
+### Projeto: [numero]-[nome_do_workflow]
+**Localização:** `C:\.n8n_workflows\projects\[numero]-[nome_do_workflow]\`
 
 ### Commands Criados
 1. `/adw:[command-1]` - [purpose]
@@ -209,7 +208,7 @@ Antes de finalizar, verifique:
 
 ### Estrutura
 ```
-#.[numero]-[nome_do_workflow]\
+.[numero]-[nome_do_workflow]\
 ├── README.md
 ├── workflow.json (A SER CRIADO no passo 3)
 └── .claude\
